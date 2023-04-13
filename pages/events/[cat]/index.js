@@ -1,19 +1,25 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
-export default function EventsCategoryPage({ data }) {
+export default function EventsCategoryPage({ data, city }) {
       return (
             <div>
+                  <h2>Events in {city}</h2>
                   {
                         data.map((e) =>
                               <>
-                                    <a key={e.id} href={`/events/${e.city}/${e.id}`}>
-                                          <Image src={e.image} height={300} width={300} alt={e.description} />
-                                          <h2>{e.title}</h2>
-                                          <p>{e.description}</p>
+                                    <Link key={e.id} href={`/events/${e.city}/${e.id}`} passHref legacyBehavior>
+                                          <a >
+                                                <Image src={e.image} height={300} width={300} alt={e.description} />
+                                                <h2>{e.title}</h2>
+                                                <p>{e.description}</p>
 
 
-                                    </a>
+                                          </a>
+
+                                    </Link>
+
 
                               </>
 
@@ -52,7 +58,8 @@ export async function getStaticProps(context) {
       console.log(data)
       return {
             props: {
-                  data
+                  data,
+                  city: id
             }
       }
 

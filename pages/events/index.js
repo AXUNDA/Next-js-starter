@@ -1,20 +1,25 @@
 import Image from 'next/image'
+import Link from 'next/link'
 import React from 'react'
 
 export default function AllEventsPage({ data }) {
       return (
             <div>
                   {data.map((ev) =>
+                        <Link key={ev.id} href={`/events/${ev.id}`} passHref legacyBehavior>
+                              <a  >
+                                    <h2>{ev.title}</h2>
 
-                        <a key={ev.id} href={`/events/${ev.id}`} >
-                              <h2>{ev.title}</h2>
-
-                              <Image src={ev.image} alt={ev.title} height={300} width={300} />
-                              {/* <p>{ev.description}</p> */}
+                                    <Image src={ev.image} alt={ev.title} height={300} width={300} />
+                                    {/* <p>{ev.description}</p> */}
 
 
 
-                        </a>
+                              </a>
+
+
+                        </Link>
+
 
 
 
